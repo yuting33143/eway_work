@@ -276,16 +276,18 @@ main{
                         height: 57px;
                         letter-spacing: 0.15em;
                         outline: 0;
-                        /*移除箭頭樣式*/
-                        appearance:none;
-                        -moz-appearance:none;
-                        -webkit-appearance:none;
                         &:focus{
                             border: 3px solid #93BBF9;
                         }
-                        &::-webkit-calendar-picker-indicator {
+                        &::-webkit-calendar-picker-indicator{
                             opacity: 0;
-                        }
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                          }
+                      
                     }
                     // 格式錯誤邊框
                     .wrong{
