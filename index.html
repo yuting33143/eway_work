@@ -279,21 +279,25 @@
                         store.nextElementSibling.nextElementSibling.classList.add('none');
                         this.checkdata = true;
                     }else{
+                        // 驗證未通過
                         store.classList.add('wrong');
                         store.nextElementSibling.nextElementSibling.classList.remove('none');
                         this.checkdata = false;
                     }
                 },
+                // name不能打數字
                 nameCheck_keydown(e){
                     // console.log(e.which);
                     if((e.which >= 48 && e.which <= 57) || (e.which > 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
                         e.preventDefault();
                     }
                 },
+                // name條件判斷
                 nameCheck(){
                     let name = document.getElementById('name');
                     if(this.dataCheck.name == ""){
                         // 若為空值
+                        // 驗證未通過
                         name.classList.add('wrong');
                         name.nextElementSibling.classList.remove('none');
                         this.checkdata = false;
@@ -304,6 +308,7 @@
                         this.checkdata = true;
                     }
                 },
+                // phone只能數字
                 phoneCheck_keydown(e){
                     if((e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
 
@@ -311,10 +316,12 @@
                         e.preventDefault();
                     }
                 },
+                // phone條件判斷
                 phoneCheck(){
                     let phone = document.getElementById('phone');
                     if(this.dataCheck.phone.length !== 10){
                         // 若數字長度不為10
+                        // 驗證未通過
                         phone.classList.add('wrong');
                         phone.nextElementSibling.classList.remove('none');
                         this.checkdata = false;
@@ -325,6 +332,7 @@
                         this.checkdata = true;
                     }
                 },
+                // amount只能數字
                 amountCheck_keydown(e){
                     if((e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
 
@@ -332,10 +340,12 @@
                         e.preventDefault();
                     }
                 },
+                // amount條件判斷
                 amountCheck(){
                     let amount = document.getElementById('amount');
                     if(this.dataCheck.amount.length == 0){
                         // 若數字長度為0
+                        // 驗證未通過
                         amount.classList.add('wrong');
                         amount.nextElementSibling.classList.remove('none');
                         this.checkdata = false;
@@ -346,6 +356,7 @@
                         this.checkdata = true;
                     }
                 },
+                // payment條件判斷
                 paymentCheck(){
                     let payment = document.getElementById('payment');
                     if(this.dataCheck.payment == "ATM" || this.dataCheck.payment == "digital payment"){
@@ -354,11 +365,13 @@
                         payment.nextElementSibling.nextElementSibling.classList.add('none');
                         this.checkdata = true;
                     }else{
+                        // 驗證未通過
                         payment.classList.add('wrong');
                         payment.nextElementSibling.nextElementSibling.classList.remove('none');
                         this.checkdata = false;
                     }
                 },
+                // submit按鈕送出判斷
                 submitCheck(){
                     this.storeCheck();
                     this.nameCheck();
@@ -378,6 +391,7 @@
                         failure.classList.add('none');
                         error.classList.add('none');
                     }else{
+                        // 驗證未通過
                         submit.classList.remove('submitSuccess');
                         submit.classList.add('submitFailure');
                         success.classList.add('none');
