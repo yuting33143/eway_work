@@ -100,7 +100,7 @@
                     <div class="list">
                         <label for="phone">phone</label>
                         <input
-                            type="number"
+                            type="text"
                             inputmode="numeric"
                             id="phone"
                             class="fromItem"
@@ -116,7 +116,8 @@
                     <div class="list">
                         <label for="amount">Amount of consumption</label>
                         <input
-                            type="number"
+                            type="text"
+                            inputmode="numeric"
                             id="amount"
                             class="fromItem"
                             pattern="[0-9]*"
@@ -131,7 +132,6 @@
                         <img src="./img/arrow.png" alt="arrow">
                         <input
                             type="text"
-                            inputmode="numeric"
                             id="payment"
                             class="fromItem"
                             list="paymentlist"
@@ -360,6 +360,11 @@
                     }
                 },
                 submitCheck(){
+                    this.storeCheck();
+                    this.nameCheck();
+                    this.phoneCheck();
+                    this.amountCheck();
+                    this.paymentCheck();
                     let submit = document.querySelector('.submit');
                     let success = document.querySelector('.success');
                     let failure = document.querySelector('.failure');
