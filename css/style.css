@@ -447,6 +447,12 @@ main .awardWrapper ul.award {
     width: 375px;
   }
 }
+@media all and (max-width: 375px) {
+  main .awardWrapper ul.award {
+    column-gap: 5px;
+    width: 375px;
+  }
+}
 main .awardWrapper ul.award li.awardItem {
   width: 178px;
   height: 112px;

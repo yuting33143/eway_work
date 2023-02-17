@@ -379,7 +379,10 @@ main{
                 column-gap: 17px;
                 width: 375px;
             }
-
+            @media all and (max-width: 375px) {
+                column-gap: 5px;
+                width: 375px;
+            }
             li.awardItem{
                 width: 178px;
                 height: 112px;
