@@ -130,17 +130,8 @@
                     <div class="list">
                         <label for="payment">payment</label>
                         <img src="./img/arrow.png" alt="arrow">
-                        <!-- <input
-                            type="text"
-                            id="payment"
-                            class="fromItem"
-                            list="paymentlist"
-                            placeholder="placeholder text"
-                            v-model.trim="dataCheck.payment"
-                            @blur="paymentCheck"/> -->
                         <select id="payment" class="fromItem" v-model.trim="dataCheck.payment" @blur="paymentCheck">
-                            <option value="" disabled selected>placeholder text</option>
-                            <option value="digital payment">digital payment</option>
+                            <option value="digital payment" selected>digital payment</option>
                             <option value="ATM">ATM</option>
                         </select>
                         <p class="wrongTest none">required</p>
@@ -218,7 +209,7 @@
                         name:"",
                         phone:"",
                         amount:"",
-                        payment:""
+                        payment:"digital payment"
                     },
                     checkdata:{
                         store:false,

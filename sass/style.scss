@@ -292,6 +292,11 @@ main{
                           }
                       
                     }
+                    datalist{
+                        appearance: none;
+                        -moz-appearance: none;
+                        -webkit-appearance: none;
+                    }
                     // 格式錯誤邊框
                     .wrong{
                         border: 3px solid #E06D6D;
@@ -330,7 +335,10 @@ main{
                 &:hover{
                     transform: scale(1.1);
                     transition: all 0.3s ease-in-out;
+                }
+                &:active{
                     background: #D3A995;
+
                 }
             }
             // 按鈕成功
