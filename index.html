@@ -74,13 +74,15 @@
                             list="storelist"
                             placeholder="placeholder text"
                             v-model.trim="dataCheck.store"
-                            @blur="storeCheck"/>
+                            @blur="storeCheck"
+                            @input="storeInputCheck"/>
                         <datalist id="storelist" class="chooseItem">
                             <option value="store1">store1</option>
                             <option value="store2">store2</option>
                             <option value="store3">store3</option>
                         </datalist>
                         <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">no result</p>
                     </div>
                     <div class="list">
                         <label for="name">name</label>
@@ -94,6 +96,7 @@
                             @blur="nameCheck"
                             />
                         <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
                     </div>
                     <div class="list">
                         <label for="phone">phone</label>
@@ -111,6 +114,7 @@
                             @blur="phoneCheck"
                             />
                         <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
                     </div>
                     <div class="list">
                         <label for="amount">Amount of consumption</label>
@@ -126,6 +130,7 @@
                             @keyup="amountNoChinese"
                             @blur="amountCheck"/>
                         <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
                     </div>
                     <div class="list">
                         <label for="payment">payment</label>
@@ -135,6 +140,7 @@
                             <option value="ATM">ATM</option>
                         </select>
                         <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
                     </div>
                 </div>
                 <!-- 按鈕 -->
@@ -211,6 +217,7 @@
                         amount:"",
                         payment:"digital payment"
                     },
+                    storeOption:["store1", "store2", "store3"],
                     checkdata:{
                         store:false,
                         name:false,
@@ -282,11 +289,26 @@
                         store.classList.remove('wrong');
                         store.nextElementSibling.nextElementSibling.classList.add('none');
                         this.checkdata.store = true;
-                    }else{
-                        // 驗證未通過
+                    }
+                    else if(this.dataCheck.store == ""){
+                        // 驗證未通過(未填寫)
                         store.classList.add('wrong');
                         store.nextElementSibling.nextElementSibling.classList.remove('none');
                         this.checkdata.store = false;
+                    }
+                },
+                storeInputCheck(){
+                    let store = document.getElementById('store');
+                    let match = this.storeOption.filter(option => option.includes(this.dataCheck.store)) ;
+                    // console.log(match);
+                    if (match.length === 0) {
+                        store.classList.add('wrong');
+                        store.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('none');
+                        store.nextElementSibling.nextElementSibling.classList.add('none');
+                    }else{
+                        store.classList.remove('wrong');
+                        store.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('none');
+                        store.nextElementSibling.nextElementSibling.classList.add('none');
                     }
                 },
                 // name不能打數字
@@ -324,11 +346,19 @@
                 phoneCheck(){
                     let phone = document.getElementById('phone');
                     const regex = /^(\+?886-?|0)?9\d{8}$/;
-                    if(this.dataCheck.phone.length !== 10){
+                    if(this.dataCheck.phone.length !== 10 && this.dataCheck.phone.length !== 0){
                         // 若數字長度不為10
                         // 驗證未通過
                         phone.classList.add('wrong');
+                        phone.nextElementSibling.classList.add('none');
+                        phone.nextElementSibling.nextElementSibling.classList.remove('none');
+                        this.checkdata.phone = false;
+                    }else if(this.dataCheck.phone.length == 0){
+                        // 若為空值
+                        // 驗證未通過
+                        phone.classList.add('wrong');
                         phone.nextElementSibling.classList.remove('none');
+                        phone.nextElementSibling.nextElementSibling.classList.add('none');
                         this.checkdata.phone = false;
                     }else{
                         // 驗證通過
@@ -339,7 +369,7 @@
                         }else{
                             // 驗證未通過
                             phone.classList.add('wrong');
-                            phone.nextElementSibling.classList.remove('none');
+                            phone.nextElementSibling.nextElementSibling.classList.remove('none');
                             this.checkdata.phone = false;
                         }
                     }
