@@ -337,7 +337,8 @@ main .formWrapper .form .formContent .list img {
   right: 3%;
   top: 63%;
 }
-main .formWrapper .form .formContent .list input, main .formWrapper .form .formContent .list select {
+main .formWrapper .form .formContent .list input {
+  box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
   border: 1px solid #204379;
@@ -351,8 +352,11 @@ main .formWrapper .form .formContent .list input, main .formWrapper .form .formC
   -moz-appearance: none;
   -webkit-appearance: none;
 }
-main .formWrapper .form .formContent .list input:focus, main .formWrapper .form .formContent .list select:focus {
+main .formWrapper .form .formContent .list input:focus {
   border: 3px solid #93BBF9;
+}
+main .formWrapper .form .formContent .list input::-webkit-calendar-picker-indicator {
+  opacity: 0;
 }
 main .formWrapper .form .formContent .list .wrong {
   border: 3px solid #E06D6D;

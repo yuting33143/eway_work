@@ -266,7 +266,8 @@ main{
                         right: 3%;
                         top: 63%;
                     }
-                    input, select{
+                    input{
+                        box-sizing: border-box;
                         width: 100%;
                         border-radius: 20px;
                         border: 1px solid #204379;
@@ -281,6 +282,9 @@ main{
                         -webkit-appearance:none;
                         &:focus{
                             border: 3px solid #93BBF9;
+                        }
+                        &::-webkit-calendar-picker-indicator {
+                            opacity: 0;
                         }
                     }
                     // 格式錯誤邊框
