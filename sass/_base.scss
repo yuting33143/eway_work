@@ -1,0 +1,54 @@
+// viewpoint 斷點宣告==========
+$l_breakpoint:768px;
+$m_breakpoint:414px;
+// 720px 
+@mixin pad(){
+    @media all and (max-width: $l_breakpoint){
+        @content;
+    }
+}
+// 428px
+@mixin mobile(){
+    @media all and (max-width: $m_breakpoint){
+        @content;
+    }
+}
+// ==============================
+// color 顏色宣告
+$Primary1:#204379;
+$Primary2:#B57556;
+$Primary3:#DAE4F1;
+$Primary4:#E2D9D3;
+$bg:#E5E5E5;
+// ==============================
+// 字型宣告
+$font:"Noto Sans TC";
+// ==============================
+// 字型
+h2{
+    font-size: 32px;
+    line-height: 125%;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+};
+h4{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 140%;
+}
+h5{
+    font-size: 18px;
+    line-height: 125%;
+    font-style: normal;
+    font-weight: 700;
+}
+// 字重
+.bold{
+    font-weight: 700;
+}
+// 文字底線
+.underline{
+    text-decoration: underline;
+}
