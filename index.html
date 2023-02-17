@@ -323,6 +323,7 @@
                 // phone條件判斷
                 phoneCheck(){
                     let phone = document.getElementById('phone');
+                    const regex = /^(\+?886-?|0)?9\d{8}$/;
                     if(this.dataCheck.phone.length !== 10){
                         // 若數字長度不為10
                         // 驗證未通過
@@ -331,15 +332,24 @@
                         this.checkdata = false;
                     }else{
                         // 驗證通過
-                        phone.classList.remove('wrong');
-                        phone.nextElementSibling.classList.add('none');
-                        this.checkdata = true;
+                        if(regex.test(phone.value)){
+                            phone.classList.remove('wrong');
+                            phone.nextElementSibling.classList.add('none');
+                            this.checkdata = true;
+                        }else{
+                            // 驗證未通過
+                            phone.classList.add('wrong');
+                            phone.nextElementSibling.classList.remove('none');
+                            this.checkdata = false;
+                        }
                     }
                 },
                 // amount只能數字
                 amountCheck_keydown(e){
+                    const regex = /^0+(?=\d)/; 
                     if((e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
-
+                        const result = this.dataCheck.amount.replace(regex, "");
+                        this.dataCheck.amount = result ;
                     }else{
                         e.preventDefault();
                     }
