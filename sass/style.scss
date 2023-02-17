@@ -266,7 +266,7 @@ main{
                         right: 3%;
                         top: 63%;
                     }
-                    input{
+                    input, select{
                         box-sizing: border-box;
                         width: 100%;
                         border-radius: 20px;
@@ -276,6 +276,9 @@ main{
                         height: 57px;
                         letter-spacing: 0.15em;
                         outline: 0;
+                        appearance: none;
+                        -moz-appearance: none;
+                        -webkit-appearance: none;
                         &:focus{
                             border: 3px solid #93BBF9;
                         }

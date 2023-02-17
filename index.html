@@ -130,18 +130,19 @@
                     <div class="list">
                         <label for="payment">payment</label>
                         <img src="./img/arrow.png" alt="arrow">
-                        <input
+                        <!-- <input
                             type="text"
                             id="payment"
                             class="fromItem"
                             list="paymentlist"
                             placeholder="placeholder text"
                             v-model.trim="dataCheck.payment"
-                            @blur="paymentCheck"/>
-                        <datalist id="paymentlist" class="chooseItem">
+                            @blur="paymentCheck"/> -->
+                        <select id="payment" class="fromItem" v-model.trim="dataCheck.payment" @blur="paymentCheck">
+                            <option value="" disabled selected>placeholder text</option>
                             <option value="digital payment">digital payment</option>
                             <option value="ATM">ATM</option>
-                        </datalist>
+                        </select>
                         <p class="wrongTest none">required</p>
                     </div>
                 </div>
@@ -394,12 +395,12 @@
                     if(this.dataCheck.payment == "ATM" || this.dataCheck.payment == "digital payment"){
                         // 驗證通過
                         payment.classList.remove('wrong');
-                        payment.nextElementSibling.nextElementSibling.classList.add('none');
+                        payment.nextElementSibling.classList.add('none');
                         this.checkdata.payment = true;
                     }else{
                         // 驗證未通過
                         payment.classList.add('wrong');
-                        payment.nextElementSibling.nextElementSibling.classList.remove('none');
+                        payment.nextElementSibling.classList.remove('none');
                         this.checkdata.payment = false;
                     }
                 },
