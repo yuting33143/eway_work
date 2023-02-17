@@ -14,10 +14,10 @@
                 <h2>There is no one</h2>
                 <h2>who loves pain</h2>
                 <!-- 按鈕 -->
-                <!-- <a href="#" class="btn">
+                <!-- <a href="#form" class="btn">
                     <span>FORM</span>
                 </a> -->
-                <button type="button" class="btn">FORM</button>
+                <button type="button" class="btn" @click="toForm">FORM</button>
                 <div class="text">
                     <div class="title">
                         <img src="img/cactus.png" class="cactus">
@@ -59,6 +59,7 @@
             <div class="wave"></div>
         </section>
         <!-- 表單 -->
+        <div id="form"></div>
         <section class="formWrapper">
             <div class="form">
                 <div class="formContent">
@@ -270,6 +271,12 @@
 
             },
             methods:{
+                // 點擊form按鈕到form表單
+                toForm(){
+                    let form = document.getElementById('form');
+                    const topOffset = form.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: topOffset, behavior: 'smooth' });
+                },
                 // store條件判斷
                 storeCheck(){
                     let store = document.getElementById('store');
