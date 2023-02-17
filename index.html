@@ -107,6 +107,7 @@
                             placeholder="placeholder text"
                             v-model.trim="dataCheck.phone"
                             @keydown="phoneCheck_keydown($event)"
+                            @keyup="phoneNoChinese"
                             @blur="phoneCheck"
                             />
                         <p class="wrongTest none">required</p>
@@ -122,6 +123,7 @@
                             placeholder="placeholder text"
                             v-model.trim="dataCheck.amount"
                             @keydown="amountCheck_keydown($event)"
+                            @keyup="amountNoChinese"
                             @blur="amountCheck"/>
                         <p class="wrongTest none">required</p>
                     </div>
@@ -217,7 +219,13 @@
                         amount:"",
                         payment:""
                     },
-                    checkdata:false,
+                    checkdata:{
+                        store:false,
+                        name:false,
+                        phone:false,
+                        amount:false,
+                        payment:false
+                    },
                     awardA:[
                         {
                             id: "A",
@@ -281,12 +289,12 @@
                         // 驗證通過
                         store.classList.remove('wrong');
                         store.nextElementSibling.nextElementSibling.classList.add('none');
-                        this.checkdata = true;
+                        this.checkdata.store = true;
                     }else{
                         // 驗證未通過
                         store.classList.add('wrong');
                         store.nextElementSibling.nextElementSibling.classList.remove('none');
-                        this.checkdata = false;
+                        this.checkdata.store = false;
                     }
                 },
                 // name不能打數字
@@ -304,12 +312,12 @@
                         // 驗證未通過
                         name.classList.add('wrong');
                         name.nextElementSibling.classList.remove('none');
-                        this.checkdata = false;
+                        this.checkdata.name = false;
                     }else{
                         // 驗證通過
                         name.classList.remove('wrong');
                         name.nextElementSibling.classList.add('none');
-                        this.checkdata = true;
+                        this.checkdata.name = true;
                     }
                 },
                 // phone只能數字
@@ -329,20 +337,25 @@
                         // 驗證未通過
                         phone.classList.add('wrong');
                         phone.nextElementSibling.classList.remove('none');
-                        this.checkdata = false;
+                        this.checkdata.phone = false;
                     }else{
                         // 驗證通過
                         if(regex.test(phone.value)){
                             phone.classList.remove('wrong');
                             phone.nextElementSibling.classList.add('none');
-                            this.checkdata = true;
+                            this.checkdata.phone = true;
                         }else{
                             // 驗證未通過
                             phone.classList.add('wrong');
                             phone.nextElementSibling.classList.remove('none');
-                            this.checkdata = false;
+                            this.checkdata.phone = false;
                         }
                     }
+                },
+                // keyup不能打中文
+                phoneNoChinese(){
+                    let str = (this.dataCheck.phone).replace(/\D/g, "");
+                    this.dataCheck.phone = str;
                 },
                 // amount只能數字
                 amountCheck_keydown(e){
@@ -362,13 +375,18 @@
                         // 驗證未通過
                         amount.classList.add('wrong');
                         amount.nextElementSibling.classList.remove('none');
-                        this.checkdata = false;
+                        this.checkdata.amount = false;
                     }else{
                         // 驗證通過
                         amount.classList.remove('wrong');
                         amount.nextElementSibling.classList.add('none');
-                        this.checkdata = true;
+                        this.checkdata.amount = true;
                     }
+                },
+                // keyup不能打中文
+                amountNoChinese(){
+                    let str = (this.dataCheck.amount).replace(/\D/g, "");
+                    this.dataCheck.amount = str;
                 },
                 // payment條件判斷
                 paymentCheck(){
@@ -377,12 +395,12 @@
                         // 驗證通過
                         payment.classList.remove('wrong');
                         payment.nextElementSibling.nextElementSibling.classList.add('none');
-                        this.checkdata = true;
+                        this.checkdata.payment = true;
                     }else{
                         // 驗證未通過
                         payment.classList.add('wrong');
                         payment.nextElementSibling.nextElementSibling.classList.remove('none');
-                        this.checkdata = false;
+                        this.checkdata.payment = false;
                     }
                 },
                 // submit按鈕送出判斷
@@ -397,7 +415,7 @@
                     let failure = document.querySelector('.failure');
                     let error = document.querySelector('.error');
                     // console.log(this.checkdata);
-                    if(this.checkdata){
+                    if(this.checkdata.store && this.checkdata.name && this.checkdata.phone && this.checkdata.amount && this.checkdata.payment){
                         // 驗證通過
                         submit.classList.add('submitSuccess');
                         submit.classList.remove('submitFailure');
@@ -412,7 +430,8 @@
                         failure.classList.remove('none');
                         error.classList.remove('none');
                     };
-                }
+                },
+                
             }
         }).mount('#app');
     </script>
